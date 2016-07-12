@@ -1,0 +1,34 @@
+version: '2'
+services:
+  selenium_hub:
+    image: selenium/hub
+    container_name: selenium_hub
+    hostname: selenium_hub
+    ports:
+      - 4444
+
+  chrome:
+    depends_on:
+      - selenium_hub
+    image: selenium/node-chrome-debug
+    container_name: chrome
+    hostname: chrome
+    links:
+      - selenium_hub:hub
+    ports:
+      - 4444
+      - 6000:5900
+    environment:
+      - HUB_PORT_4444_TCP_ADDR=hub
+
+  wdio:
+    depends_on:
+      - selenium_hub
+    links:
+      - selenium_hub:selenium
+    image: twhtanghk/wdio.inhse
+    container_name: wdio
+    hostname: wdio
+    entrypoint: ./entrypoint.sh
+    volumes:
+      - ${COMPOSEROOT}/wdio/conf/user.coffee:/weddriverio/test/specs/dp/user.coffee
