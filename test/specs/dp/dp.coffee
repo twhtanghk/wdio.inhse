@@ -13,8 +13,49 @@ describe 'dp', ->
     tabs = browser.getTabIds()
     if browser.getCurrentTabId() == tabs[0]
       browser.switchTab tabs[1]
-    browser.getTitle().should.be.equal 'eLAPS - Electronic Leave Application and Processing System'
+    browser.getTitle().should.be.equal 'eLAPS - Electronic Leave Application and Processing System'   
+    browser.close()
+  
+  it 'CSA', ->
+    browser.click 'div[record="In-house Applications"]'
+    browser.click 'a[record="Contract Staff Administration System (CSA)"]'
+    tabs = browser.getTabIds()
+    if browser.getCurrentTabId() == tabs[0]
+      browser.switchTab tabs[1]
+    browser.getTitle().should.be.equal 'CSA Main Menu' 
+    browser.close()
+
+  it 'SPARS', ->
+    browser.click 'a[record="Security Patch Reminding System (SPARS)"]'
+    tabs = browser.getTabIds()
+    if browser.getCurrentTabId() == tabs[0]
+      browser.switchTab tabs[1]
+    browser.getTitle().should.be.equal 'Security Patch Reminding System (SPARS)' 
+    browser.close()
+     
+  it 'ORS', ->
+    browser.click 'a[record="Online Reservation of Shared Facilities System (ORS)"]'
+    tabs = browser.getTabIds()
+    if browser.getCurrentTabId() == tabs[0]
+      browser.switchTab tabs[1]
+    browser.getTitle().should.be.equal 'Online Reservation of Shared Facilities' 
+    browser.close()
     
+  it 'CPD', ->
+    browser.url 'https://dp2.ogcio.ccgo.hksarg/eogcio2https/cpd/SFASAdminServlet'
+    browser.click 'a[href$=CCGOEntryServlet]'
+    browser.getTitle().should.be.equal 'Continuing Professional Development'
+      
+      
+  it 'CFD', ->
+    browser.click 'a[record="Contract Staff Funding Mgmt System (CFD)"]'
+    tabs = browser.getTabIds()
+    if browser.getCurrentTabId() == tabs[0]
+      browser.switchTab tabs[1]
+    if browser.getTitle() == 'Contract Staff Funding Management' || 'CFD Select Login Page'
+      true.should.be.ok  
+    browser.close()     
+
   it 'TRS', ->
     browser.click 'div[record="In-house Applications"]'
     browser.moveToObject 'a[record="Timesheet Reporting System (TRS)"]'
