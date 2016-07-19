@@ -9,13 +9,13 @@ exports.config = {
     ],
     exclude: [
     ],
-    maxInstances: 10,
+    maxInstances: 1,
     capabilities: [{
-        maxInstances: 5,
+        maxInstances: 1,
         browserName: 'chrome'
     }],
     sync: true,
-    logLevel: 'verbose',
+    logLevel: 'error',
     coloredLogs: true,
     screenshotPath: './errorShots/',
     waitforTimeout: timeout,
