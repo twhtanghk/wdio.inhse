@@ -1,5 +1,28 @@
 config = require './config.coffee'
 
+apps = [
+	{name: 'CSA', selector: 'a[record="Contract Staff Administration System (CSA)"]', title: 'CSA Main Menu'}
+	{name: 'CFD', selector: 'a[record="Contract Staff Funding Mgmt System (CFD)"]', title: 'Contract Staff Funding Management'}
+	{name: 'DVAS', selector: 'a[record="Duty Visit Application System (DVAS)"]', title: 'Duty Visit Application System'}
+	{name: 'ERI', selector: 'a[record="Electronic Request for IT Facilities (APOLLO) (ERI)"]', title: 'Electronic Request for IT Facilities (APOLLO)'}
+	{name: 'IAMS', selector: 'a[record="Integrated Account Maintenance System (IAMS)"]', title: 'Integrated Account Maintenance System'}
+	{name: 'ISAM', selector: 'a[record="Integrated Software Asset Management System (ISAM)"]', title: 'Integrated Software Asset Management System'}
+	{name: 'ITAS', selector: 'a[record="IT Activity System (ITAS)"]', title: 'IT Activity Administration'}
+	{name: 'ORS', selector: 'a[record="Online Reservation of Shared Facilities System (ORS)"]', title: 'Online Reservation of Shared Facilities'}
+	{name: 'OTA', selector: 'a[record="Online Time-Off/Over-Time Approval (OTA)"]', title: 'Online Time-Off / Over-Time Approval'}
+	{name: 'SPARS', selector: 'a[record="Security Patch Reminding System (SPARS)"]', title: 'Security Patch Reminding System (SPARS)'}
+	{name: 'SES', selector: 'a[record="Staff Enquiry System (SES)"]', title: 'Web Staff Enquiry System'}
+	{name: 'S&MRS', selector: 'a[record="Standards and Methods Registration System (S&MRS)"]', title: 'Standards & Methods Registration System'}
+	{name: 'SRS', selector: 'a[record="Supplier Registration System (SRS)"]', title: 'SRS'}
+	{name: 'TRS', selector: 'a[record="Timesheet Reporting System (TRS)"]', title: 'Timesheet Reporting System'}
+	{name: 'UEMS', selector: 'a[record="UEM Management System (UEMS)"]', title: 'UEM Management System - Main Menu'}
+	{name: 'eleave', selector: 'a[record=e-leave]', title: 'eLAPS - Electronic Leave Application and Processing System'}
+	{name: 'eMAT', selector: 'a[record="e-MAT"]', title: 'e-MAT'}
+	{name: 'ITMP', url: config.portal.url + '/mpp/mpp/view/home', title: 'IT Activity-Based Manpower Planning'}
+	{name: 'CPD', url: config.portal.url + '/eogcio2https/cpd/', title: 'Continuing Professional Development'}
+	{name: 'eACPC', url: config.portal.url + '/gipmshttp/GIPMS/MainPage', title: 'e-ACPC version'}
+	]		
+
 describe 'dp', ->
 
   appCount = 0  
@@ -15,178 +38,16 @@ describe 'dp', ->
   afterEach ->
     tabs = browser.getTabIds()    
     browser.switchTab tabs[0]
-  
-  it 'CSA', ->        
-    browser.moveToObject 'a[record="Contract Staff Administration System (CSA)"]'
-    browser.click 'a[record="Contract Staff Administration System (CSA)"]'
-    tabs = browser.getTabIds()
-    if browser.getCurrentTabId() == tabs[0]
-      appCount++
-      browser.switchTab tabs[appCount]
-    browser.getTitle().should.be.equal 'CSA Main Menu'    
 
-  it 'CFD', ->
-    browser.moveToObject 'a[record="Contract Staff Funding Mgmt System (CFD)"]'
-    browser.click 'a[record="Contract Staff Funding Mgmt System (CFD)"]'
-    tabs = browser.getTabIds()
-    if browser.getCurrentTabId() == tabs[0]
-      appCount++
-      browser.switchTab tabs[appCount]
-    browser.getTitle().should.be.equal 'Contract Staff Funding Management'
-    
-  it 'DVAS', ->
-    browser.moveToObject 'a[record="Duty Visit Application System (DVAS)"]'
-    browser.click 'a[record="Duty Visit Application System (DVAS)"]'
-    tabs = browser.getTabIds()
-    if browser.getCurrentTabId() == tabs[0]
-      appCount++
-      browser.switchTab tabs[appCount]
-    browser.getTitle().should.be.equal 'Duty Visit Application System'  
-    
-  it 'ERI', ->
-    browser.moveToObject 'a[record="Electronic Request for IT Facilities (APOLLO) (ERI)"]'	 
-    browser.click 'a[record="Electronic Request for IT Facilities (APOLLO) (ERI)"]'	        	
-    tabs = browser.getTabIds()
-    if browser.getCurrentTabId() == tabs[0]
-      appCount++
-      browser.switchTab tabs[appCount]
-    browser.getTitle().should.be.equal 'Electronic Request for IT Facilities (APOLLO)'
-    
-  it 'IAMS', ->
-    browser.moveToObject 'a[record="Integrated Account Maintenance System (IAMS)"]'	 
-    browser.click 'a[record="Integrated Account Maintenance System (IAMS)"]'	        	
-    tabs = browser.getTabIds()
-    if browser.getCurrentTabId() == tabs[0]
-      appCount++
-      browser.switchTab tabs[appCount]
-    browser.getTitle().should.be.equal 'Integrated Account Maintenance System'
-    
-  it 'ISAM', ->
-    browser.moveToObject 'a[record="Integrated Software Asset Management System (ISAM)"]'	 
-    browser.click 'a[record="Integrated Software Asset Management System (ISAM)"]'	        	
-    tabs = browser.getTabIds()
-    if browser.getCurrentTabId() == tabs[0]
-      appCount++
-      browser.switchTab tabs[appCount]
-    browser.getTitle().should.be.equal 'Integrated Software Asset Management System'
-    
-  it 'ITAS', ->
-    browser.moveToObject 'a[record="IT Activity System (ITAS)"]'	 
-    browser.click 'a[record="IT Activity System (ITAS)"]'	        	
-    tabs = browser.getTabIds()
-    if browser.getCurrentTabId() == tabs[0]
-      appCount++
-      browser.switchTab tabs[appCount]
-    browser.getTitle().should.be.equal 'IT Activity Administration'        
-     
-  it 'ORS', ->
-    browser.moveToObject 'a[record="Online Reservation of Shared Facilities System (ORS)"]'
-    browser.click 'a[record="Online Reservation of Shared Facilities System (ORS)"]'
-    tabs = browser.getTabIds()
-    if browser.getCurrentTabId() == tabs[0]
-      appCount++
-      browser.switchTab tabs[appCount]
-    browser.getTitle().should.be.equal 'Online Reservation of Shared Facilities'
-    
-  it 'OTA', ->
-    browser.moveToObject 'a[record="Online Time-Off/Over-Time Approval (OTA)"]'
-    browser.click 'a[record="Online Time-Off/Over-Time Approval (OTA)"]'
-    tabs = browser.getTabIds()
-    if browser.getCurrentTabId() == tabs[0]
-      appCount++
-      browser.switchTab tabs[appCount]
-    browser.getTitle().should.be.equal 'Online Time-Off / Over-Time Approval'  
-
-  it 'SPARS', ->
-    browser.moveToObject 'a[record="Security Patch Reminding System (SPARS)"]'
-    browser.click 'a[record="Security Patch Reminding System (SPARS)"]'
-    tabs = browser.getTabIds()
-    if browser.getCurrentTabId() == tabs[0]
-      appCount++
-      browser.switchTab tabs[appCount]
-    browser.getTitle().should.be.equal 'Security Patch Reminding System (SPARS)'
-    
-  it 'SES', ->
-    browser.moveToObject 'a[record="Staff Enquiry System (SES)"]'
-    browser.click 'a[record="Staff Enquiry System (SES)"]'
-    tabs = browser.getTabIds()
-    if browser.getCurrentTabId() == tabs[0]
-      appCount++
-      browser.switchTab tabs[appCount]
-    browser.getTitle().should.be.equal 'Web Staff Enquiry System'
-    
-  it 'S&MRS', ->
-    browser.moveToObject 'a[record="Standards and Methods Registration System (S&MRS)"]'
-    browser.click 'a[record="Standards and Methods Registration System (S&MRS)"]'
-    tabs = browser.getTabIds()
-    if browser.getCurrentTabId() == tabs[0]
-      appCount++
-      browser.switchTab tabs[appCount]
-    browser.getTitle().should.be.equal 'Standards & Methods Registration System'
-    
-  it 'SRS', ->
-    browser.moveToObject 'a[record="Supplier Registration System (SRS)"]'
-    browser.click 'a[record="Supplier Registration System (SRS)"]'
-    tabs = browser.getTabIds()
-    if browser.getCurrentTabId() == tabs[0]
-      appCount++
-      browser.switchTab tabs[appCount]
-    browser.getTitle().should.be.equal 'SRS'    
-
-  it 'TRS', ->
-    browser.moveToObject 'a[record="Timesheet Reporting System (TRS)"]'
-    browser.click 'a[record="Timesheet Reporting System (TRS)"]'	        	
-    tabs = browser.getTabIds()
-    if browser.getCurrentTabId() == tabs[0]
-      appCount++
-      browser.switchTab tabs[appCount]
-    browser.getTitle().should.be.equal 'Timesheet Reporting System'
-    
-  it 'UEMS', ->
-    browser.moveToObject 'a[record="UEM Management System (UEMS)"]'
-    browser.click 'a[record="UEM Management System (UEMS)"]'	        	
-    tabs = browser.getTabIds()
-    if browser.getCurrentTabId() == tabs[0]
-      appCount++
-      browser.switchTab tabs[appCount]
-    browser.getTitle().should.be.equal 'UEM Management System - Main Menu'  
-  
-  it 'eleave', ->
-    browser.click 'a[record=e-leave]'
-    tabs = browser.getTabIds()
-    if browser.getCurrentTabId() == tabs[0]
-      appCount++
-      browser.switchTab tabs[appCount]
-    browser.getTitle().should.be.equal 'eLAPS - Electronic Leave Application and Processing System'
-    
-  it 'eMAT', ->
-    browser.click 'a[record="e-MAT"]'	        	
-    tabs = browser.getTabIds()
-    if browser.getCurrentTabId() == tabs[0]
-      appCount++
-      browser.switchTab tabs[appCount]
-    browser.getTitle().should.be.equal 'e-MAT'
-     
-  it 'ITMP', ->
-    browser.newWindow config.portal.url + '/mpp/mpp/view/home'
-    tabs = browser.getTabIds()
-    if browser.getCurrentTabId() == tabs[0]
-      appCount++
-      browser.switchTab tabs[appCount]
-    browser.getTitle().should.be.equal 'IT Activity-Based Manpower Planning'  
- 
-  it 'CPD', ->
-    browser.newWindow config.portal.url + '/eogcio2https/cpd/'
-    tabs = browser.getTabIds()
-    if browser.getCurrentTabId() == tabs[0]
-      appCount++
-      browser.switchTab tabs[appCount]
-    browser.getTitle().should.be.equal 'Continuing Professional Development'
-    
-  it 'eACPC', ->
-    browser.newWindow config.portal.url + '/gipmshttp/GIPMS/MainPage'
-    tabs = browser.getTabIds()
-    if browser.getCurrentTabId() == tabs[0]
-      appCount++
-      browser.switchTab tabs[appCount]
-    browser.getTitle().should.contain 'e-ACPC version'
+  apps.forEach (app) ->
+    it app.name, ->
+      if app.selector
+        browser.moveToObject app.selector
+        browser.click app.selector
+      else
+        browser.newWindow app.url
+      tabs = browser.getTabIds()
+      if browser.getCurrentTabId() == tabs[0]
+        appCount++
+        browser.switchTab tabs[appCount]
+      browser.getTitle().should.contain app.title
