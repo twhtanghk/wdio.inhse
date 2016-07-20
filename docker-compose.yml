@@ -31,5 +31,5 @@ services:
     hostname: wdio
     entrypoint: ./entrypoint.sh
     volumes:
-      - ${COMPOSEROOT}/wdio/conf/user.coffee:/webdriverio/test/specs/dp/user.coffee
+      - ${COMPOSEROOT}/wdio/conf/config.coffee:/webdriverio/test/specs/dp/config.coffee
       - ${COMPOSEROOT}/wdio/data:/webdriverio/errorShots
