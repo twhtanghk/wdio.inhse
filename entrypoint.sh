@@ -5,5 +5,5 @@ sleep ${WAIT:-3}
 
 while true; do
   node_modules/.bin/wdio
-  sleep 1h
+  sleep ${INTERVAL:-1h}
 done
