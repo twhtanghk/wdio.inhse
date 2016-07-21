@@ -7,8 +7,10 @@
     "test": "test"
   },
   "dependencies": {
+    "bluebird": "^3.4.1",
     "chai": "^3.5.0",
     "lodash": "^4.13.1",
+    "needle": "^1.0.0",
     "wdio-mocha-framework": "^0.3.5",
     "wdio-sauce-service": "^0.2.2",
     "webdriverio": "^4.2.1"

@@ -33,3 +33,5 @@ services:
     volumes:
       - ${COMPOSEROOT}/wdio/conf/config.coffee:/webdriverio/test/specs/dp/config.coffee
       - ${COMPOSEROOT}/wdio/data:/webdriverio/errorShots
+      - /etc/ssl/certs:/etc/ssl/certs
+      - /usr/local/share/ca-certificates:/usr/local/share/ca-certificates

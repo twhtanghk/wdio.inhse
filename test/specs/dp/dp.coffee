@@ -127,7 +127,7 @@ apps =
   eMAT:
     selector: 'a[record="e-MAT"]', 
     title: ['e-MAT', 'Electronic Medical Appointment Time-off Application and Recording System']
-    delay: 5000
+    delay: 8000
     test: ->
       new Click @
   ITMP:
@@ -150,13 +150,13 @@ describe 'dp', ->
 
   before ->
     browser.url config.portal.url
-    browser.setValue 'input#IDToken1', config.user.name
-    browser.setValue 'input#IDToken2', config.user.pass
+    browser.setValue 'input#IDToken1', config.portal.user.name
+    browser.setValue 'input#IDToken2', config.portal.user.pass
     browser.click 'input[type=submit]'
     browser.getTitle().should.be.equal 'Welcome - OGCIO DP'
     browser.click 'div[record="In-house Applications"]'
     
-  afterEach ->
+  beforeEach ->
     tabs = browser.getTabIds()    
     browser.switchTab tabs[0]
 
