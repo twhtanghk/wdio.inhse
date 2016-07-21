@@ -2,4 +2,8 @@
 
 # wait for hub and chrome ready before starting the test
 sleep ${WAIT:-3}
-node_modules/.bin/wdio
+
+while true; do
+  node_modules/.bin/wdio
+  sleep 1h
+done
