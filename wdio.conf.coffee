@@ -38,3 +38,4 @@ module.exports =
     afterTest: (test) ->
       if not test.passed
         config.errHandler test.err.message, browser.saveScreenshot()
+      browser.close()
