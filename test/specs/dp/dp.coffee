@@ -101,14 +101,6 @@ apps =
       browser.getText('font.colHeader').should.equal 'You are not authorized to access this application.'
     test: ->
       new Click @
-  SRS:
-    selector: 'a[record="Supplier Registration System (SRS)"]'
-    title: 'SRS'
-    check: ->
-      Test.lastTab()
-      browser.getText('font.colHeader').should.equal 'You are not authorized to access this application.'
-    test: ->
-      new Click @
   TRS:
     selector: 'a[record="Timesheet Reporting System (TRS)"]'
     title: 'Timesheet Reporting System'
