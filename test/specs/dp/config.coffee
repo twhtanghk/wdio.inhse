@@ -2,15 +2,9 @@ fs = require 'fs'
 Promise = require 'bluebird'
 http = Promise.promisifyAll require 'needle'
 
-dir = '/etc/ssl/certs'
-files = fs.readdirSync(dir).filter (file) -> /.*\.pem/i.test(file)
-files = files.map (file) -> "#{dir}/#{file}"
-ca = files.map (file) -> fs.readFileSync file
-
 token = (client, user) ->
   config = module.exports
   opts = 
-    ca: ca
     'Content-Type': 'application/x-www-form-urlencoded'
     username: config.im.client.id
     password: config.im.client.secret
@@ -35,7 +29,6 @@ msg = (token, body, file) ->
       content_type: 'image/png'
   opts =
     multipart: true
-    ca: ca
     headers:
       Authorization: "Bearer #{token}"
   http.postAsync config.im.url, data, opts
@@ -50,19 +43,19 @@ errHandler = (body, screenDump) ->
 
 module.exports =
   portal:
-    url: 'https://dp2.ogcio.ccgo.hksarg'
+    url: process.env.URL
     user:
-      name: 'user'
-      pass: 'pass'
+      name: process.env.USER
+      pass: process.env.PASS
   oauth2:
-    url: 'https://mob.myvnc.com/org/oauth2/token/'
+    url: process.env.TOKENURL
   im:
-    url: 'https://mob.myvnc.com/im.app/api/msg/file'
+    url: process.env.IMURL
     client:
-      id: 'client_id'
-      secret: 'client_secret'
+      id: process.env.CLIENT_ID
+      secret: process.env.CLIENT_PASS
     user:
-      id: 'user'
-      secret: 'pass'
-    to: 'Health Check Testing Group@jokyip.muc.mob.myvnc.com'
+      id: process.env.IMUSER
+      secret: process.env.IMPASS
+    to: process.env.NOTIFY
   errHandler: errHandler

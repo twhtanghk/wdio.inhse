@@ -6,11 +6,13 @@ services:
     hostname: selenium_hub
     ports:
       - 4444
+    env_file:
+      - ../.env
 
   chrome:
     depends_on:
       - selenium_hub
-    image: selenium/node-chrome-debug
+    image: selenium/node-chrome-debug:2.53.0
     container_name: chrome
     hostname: chrome
     links:
@@ -20,6 +22,8 @@ services:
       - 6000:5900
     environment:
       - HUB_PORT_4444_TCP_ADDR=hub
+    env_file:
+      - ../.env
 
   wdio:
     depends_on:
@@ -29,9 +33,7 @@ services:
     image: twhtanghk/wdio.inhse
     container_name: wdio
     hostname: wdio
-    entrypoint: ./entrypoint.sh
     volumes:
-      - ${COMPOSEROOT}/wdio/conf/config.coffee:/webdriverio/test/specs/dp/config.coffee
-      - ${COMPOSEROOT}/wdio/data:/webdriverio/errorShots
-      - /etc/ssl/certs:/etc/ssl/certs
-      - /usr/local/share/ca-certificates:/usr/local/share/ca-certificates
+      - ${COMPOSEROOT}/wdio.inhse/data:/webdriverio/errorShots
+    env_file:
+      - ../.env
