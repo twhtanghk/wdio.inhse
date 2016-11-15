@@ -37,5 +37,7 @@ module.exports =
       chai.Should()
     afterTest: (test) ->
       if not test.passed
-        config.errHandler "#{test.title}: #{test.err.message}", browser.saveScreenshot()
+        config
+          .errHandler "#{test.title}: #{test.err.message}", browser.saveScreenshot()
+          .catch console.log
       browser.close()

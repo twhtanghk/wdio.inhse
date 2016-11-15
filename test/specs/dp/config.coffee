@@ -12,7 +12,7 @@ token = (client, user) ->
     grant_type: 'password'
     username: config.im.user.id
     password: config.im.user.secret
-    scope: 'https://mob.myvnc.com/org/users https://mob.myvnc.com/mobile'
+    scope: process.env.OAUTH2_SCOPE
   http
     .postAsync config.oauth2.url, data, opts
     .then (res) ->
@@ -38,8 +38,6 @@ errHandler = (body, screenDump) ->
   token config.im.client, config.im.user
     .then (token) ->
       msg token, body, screenDump
-    .catch (err) ->
-      throw err
 
 module.exports =
   portal:
