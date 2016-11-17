@@ -16,7 +16,7 @@ module.exports =
         maxInstances: 1,
         browserName: 'chrome'
     }]
-    sync: true
+    sync: false
     logLevel: 'error'
     coloredLogs: true
     screenshotPath: './errorShots/'
@@ -27,7 +27,6 @@ module.exports =
     reporters: ['dot']
     mochaOpts: 
       debug: true
-      'debug-brk': true,
       ui: 'bdd',
       timeout: timeout,
       compilers: ['coffee:coffee-script/register']
@@ -37,7 +36,12 @@ module.exports =
       chai.Should()
     afterTest: (test) ->
       if not test.passed
-        config
-          .errHandler "#{test.title}: #{test.err.message}", browser.saveScreenshot()
+        browser
+          .saveScreenshot()
+          .then (png) ->
+            config.errHandler "#{test.title}: #{test.err.message}", png
           .catch console.log
-      browser.close()
+          .finally ->
+            browser.close()
+      else
+        browser.close()

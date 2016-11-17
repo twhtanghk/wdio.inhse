@@ -31,7 +31,11 @@ msg = (token, body, file) ->
     multipart: true
     headers:
       Authorization: "Bearer #{token}"
-  http.postAsync config.im.url, data, opts
+  http
+    .postAsync config.im.url, data, opts
+    .then (res) ->
+      if res.statusCode != 201
+        console.log "im: #{res.statusCode} #{res.statusMessage}"
 
 errHandler = (body, screenDump) ->
   config = module.exports
